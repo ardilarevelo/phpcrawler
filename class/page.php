@@ -217,7 +217,7 @@ class page{
     
     // Get Stats
     public function getStats(){
-        $numScan = $numInternalLinks = $numExternalLinks = 1;
+        $numScan = $numInternalLinks = $numExternalLinks = 0;
         $sumLoadTime = isset($this->json["total_time"]) ? $this->json["total_time"] : 0;
         $sumWords = isset($this->json["words"]) ? count(explode(" ",$this->json["words"])) : 0;
         $sumTitle = isset($this->json["title"]) ? count(explode(" ",$this->json["title"])) : 0;
@@ -244,9 +244,9 @@ class page{
         $stats["numScan"] = $numScan;
         $stats["numInternalLinks"] = $numInternalLinks;
         $stats["numExternalLinks"] = $numExternalLinks;
-        $stats["avgLoadTime"] = $sumLoadTime/$numScan;
-        $stats["avgWords"] = $sumWords/$numScan;
-        $stats["avgTitle"] = $sumTitle/$numScan;
+        $stats["avgLoadTime"] = $numScan > 0 ? $sumLoadTime/$numScan : 0;
+        $stats["avgWords"] = $numScan > 0 ? $sumWords/$numScan : 0;
+        $stats["avgTitle"] = $numScan > 0 ? $sumTitle/$numScan : 0;
         
         return $stats;
     }
