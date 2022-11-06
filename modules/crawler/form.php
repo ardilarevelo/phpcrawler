@@ -19,7 +19,7 @@ $site["title"] = "Set the URL";
         <div class="form-group">
         	<label>Pages to scan</label>
             <select name="data[maxPages]" class="form-control">
-            	<?php for($i=1;$i<=10;$i++){ ?>
+            	<?php for($i=100;$i>0;$i--){ ?>
             	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
             	<?php } ?>
             </select>

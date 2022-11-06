@@ -108,7 +108,7 @@ $admin_menu = menu::get();
 							<?php if(isset($admin_m['submenu'])){ ?>
 							<ul class="nav nav-second-level">
 								<?php foreach($admin_m['submenu'] as $admin_s){ ?>
-								<li> <a href="<?php echo $admin_s['url']; ?>"><i class="fa <?php echo $admin_s['class']; ?> fa-fw"></i> <?php echo $admin_s['name']; ?></a> </li>
+								<li> <a href="<?php echo $admin_s['url']; ?>"<?php echo isset($admin_s['url_attributes']) ? $admin_s['url_attributes'] : ""; ?>><i class="fa <?php echo $admin_s['class']; ?> fa-fw"></i> <?php echo $admin_s['name']; ?></a> </li>
 								<?php } ?>
 							</ul>
 							<?php } ?>
@@ -124,3 +124,12 @@ $admin_menu = menu::get();
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<?php site::getSessionMessage(); ?>
+			    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->

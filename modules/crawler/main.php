@@ -10,6 +10,10 @@ if(isset($_REQUEST["section"]) && $_REQUEST["section"] == "scan"){
 	$include = "scan.php";
 }elseif(isset($_REQUEST["section"]) && $_REQUEST["section"] == "result"){
 	$include = "result.php";
+}elseif(isset($_REQUEST["section"]) && $_REQUEST["section"] == "results"){
+    $include = "results.php";
+}elseif(isset($_REQUEST["section"]) && $_REQUEST["section"] == "json"){
+    $include = "json.php";
 }else{
     // Form to set the URL to create the crawler
 	$include = "form.php";

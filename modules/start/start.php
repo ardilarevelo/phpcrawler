@@ -29,17 +29,6 @@ require_once (BASE_PATH."header-admin.php");
 	</div>
 	<!-- /.col-lg-4 -->
 	<?php } ?>
-	
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-	
 </div>
 <!-- /.row -->
 <?php

@@ -18,7 +18,17 @@ class menu{
             ,'panel_call' => 'Set the URL'
             ,'panel_attributes' => ' data-toggle="modal" data-target="#myModal"'
             ,'panel_url' => '/crawler'
-            ,'url' => '/crawler'
+            ,'submenu' => array(
+                array('name' => 'Scan URL'
+                    ,'class' => 'fa-child'
+                    ,'url' => '/crawler'
+                    ,'url_attributes' => ' data-toggle="modal" data-target="#myModal"'
+                )
+                ,array('name' => 'View Results'
+                    ,'class' => 'fa-cubes'
+                    ,'url' => '/crawler/results'
+                )
+            )
         );
         
         // Profile
