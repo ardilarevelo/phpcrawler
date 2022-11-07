@@ -188,7 +188,12 @@ class page{
     
     // Get internal links
     private function getLinkType($link){
-        return substr($link,0,4) !== 'http' ? 'internal' : 'external';
+        if(substr($link,0,4) === 'http' || substr($link,0,5) === 'https'
+            || substr($link,0,4) === 'tel:' || substr($link,0,7) === 'mailto:'){
+            return 'external';
+        }else{
+            return 'internal';
+        }
     }
     
     // Save json file
@@ -217,17 +222,22 @@ class page{
     
     // Get Stats
     public function getStats(){
+        
+        $donutChart_HTTPCode = $HTTPCode = $areaCharLink = array();
+        
         $numScan = $numInternalLinks = $numExternalLinks = 0;
         $sumLoadTime = isset($this->json["total_time"]) ? $this->json["total_time"] : 0;
         $sumWords = isset($this->json["words"]) ? count(explode(" ",$this->json["words"])) : 0;
         $sumTitle = isset($this->json["title"]) ? count(explode(" ",$this->json["title"])) : 0;
         
+        // Root data
         $stats = array();
         $stats["maxPages"] = isset($this->json["maxPages"]) ? $this->json["maxPages"] : 0;
         $stats["numUniqueImages"] = isset($this->json["uniqueImages"]) ? count($this->json["uniqueImages"]) : 0;
         
+        // Internal links
         if(isset($this->json["UniqueLinks"])){
-            foreach($this->json["UniqueLinks"] as $link){
+            foreach($this->json["UniqueLinks"] as $key => $link){
                 if($link["type"] == "internal"){
                     $numInternalLinks++;
                 }else{
@@ -236,11 +246,23 @@ class page{
                 if(isset($link["scan"])){
                     $numScan++;
                     $sumLoadTime = $sumLoadTime + $link["scan"]["total_time"];
-                    $sumWords = $sumWords + count(explode(" ",$link["scan"]["words"]));
-                    $sumTitle = $sumTitle + count(explode(" ",$link["scan"]["title"]));
+                    // Words in content
+                    $numWords = count(explode(" ",$link["scan"]["words"]));
+                    $sumWords = $sumWords + $numWords;
+                    // Words in title
+                    $numWordsTitle = count(explode(" ",$link["scan"]["title"]));
+                    $sumTitle = $sumTitle + $numWordsTitle;
+                    
+                    // Add status
+                    $HTTPCode[$link["scan"]["http_code"]] = isset($HTTPCode[$link["scan"]["http_code"]]) ? $HTTPCode[$link["scan"]["http_code"]] + 1 : 1;
+                    
+                    // Add data for area char
+                    $areaCharLink[] = array("idx" => $key,"total_time" => $link["scan"]["total_time"],"numWords" => $numWords,"numWordsTitle" => $numWordsTitle);
                 }
             }
         }
+        
+        // Set the stats
         $stats["numScan"] = $numScan;
         $stats["numInternalLinks"] = $numInternalLinks;
         $stats["numExternalLinks"] = $numExternalLinks;
@@ -248,7 +270,12 @@ class page{
         $stats["avgWords"] = $numScan > 0 ? $sumWords/$numScan : 0;
         $stats["avgTitle"] = $numScan > 0 ? $sumTitle/$numScan : 0;
         
-        return $stats;
+        // Set donut chart
+        foreach($HTTPCode as $key => $value){
+            $donutChart_HTTPCode[] = array("label" => "HTTP Code: ".$key,"value" => $value);
+        }
+        
+        return array($stats,$donutChart_HTTPCode,$areaCharLink);
     }
     
 }

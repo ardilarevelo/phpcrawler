@@ -20,6 +20,7 @@ $admin_menu = menu::get();
 	
 	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL."/"; ?>template/css-admin/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL."/"; ?>template/css-admin/table-styling-complete.css" />
 	
 	<!-- MetisMenu CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo BASE_URL."/"; ?>template/css-admin/metisMenu.min.css" />

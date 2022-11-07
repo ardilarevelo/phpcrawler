@@ -40,7 +40,7 @@ require_once (BASE_PATH."header-admin.php");
 						<tr>
 							<td><?php echo $id; ?></td>
 							<td><?php echo $page->getError() == "" ? $page->json["root"] : "-"; ?></td>
-							<td><a href="/crawler/result/<?php echo $id; ?>" title="See details"><i class="fa fa-money fa-fw"></i></a></td>
+							<td><a href="/crawler/result/<?php echo $id; ?>" title="See details"><i class="fa fa-bar-chart-o fa-fw"></i></a></td>
 						</tr>
 						<?php
 					           }
@@ -49,7 +49,7 @@ require_once (BASE_PATH."header-admin.php");
 					<?php
 						}else{
 					?>
-						<tr><td colspan="3" align="center">No previous files</td></tr>
+						<tr><td colspan="3" align="center">No previous URLs</td></tr>
 					<?php } ?>
 				</tbody>
 			</table>

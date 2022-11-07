@@ -6,6 +6,14 @@ defined('_DIACCESS') or die;
 $site["title"] = "Set the URL";
 
 ?>
+<script type="text/javascript">
+	$(function() {
+		$("#btnSubmitScan").click(function() {
+			$("#btnSubmitScan").hide();
+			$("#btnAjaxLoader").show();
+		});
+	});
+</script>
 <form role="form" method="post" action="/crawler/scan" enctype="multipart/form-data">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -27,6 +35,7 @@ $site["title"] = "Set the URL";
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Scan</button>
+        <button type="submit" id="btnSubmitScan" class="btn btn-primary">Scan</button>
+        <span id="btnAjaxLoader" style="display:none;"><img src="template/images/admin/ajax-loader.gif" width="24" height="24" /></span>
     </div>
 </form>

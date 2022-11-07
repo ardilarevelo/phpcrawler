@@ -26,9 +26,10 @@ Instalation Components
 ########################
 1. Download gitgub repository in your public_html directory:
 	https://github.com/ardilarevelo/phpcrawler.git
-2. Test the website using:
+2. Grant write permissions to the "data" directory
+3. Test the website using:
 	http://localhost
-3. Enter a URL click on "Web crawler -> Scan URL"
+4. Click on "Web crawler -> Scan URL" to scan an URL
 
 ########################
 Endpoints

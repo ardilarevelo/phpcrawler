@@ -17,6 +17,16 @@ require_once (BASE_PATH."header-admin.php");
 </div>
 <!-- /.row -->
 <div class="row">
+	<div class="col-lg-4">
+		<div class="panel panel-info">
+			<div class="panel-heading"> <i class="fa fa-cubes fa-fw"></i> See results </div>
+			<div class="panel-body">
+				<p>See results and stats of previous websites</p>
+			</div>
+			<div class="panel-footer"> <a href="/crawler/results">See results</a> </div>
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
 	<?php foreach($admin_menu as $admin_m){ ?>
 	<div class="col-lg-4">
 		<div class="panel <?php echo $admin_m['panel_class']; ?>">
